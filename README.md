@@ -62,6 +62,18 @@ services:
 
 You can delete the "dev" core from `http://<projectname>.ddev.site:8983/solr/#/~cores/dev` by clicking "Unload".
 
+## Specify custom config directory
+
+If you wish to specify a custom config directory add to the `.ddev/docker-compose.solr-env.yaml` file as above with these contents, specifying the path to the config directory you wish to use:
+
+```yml
+services:
+  solr:
+    environment:
+    - SOLR_CONF_PATH=/var/www/html/conf_dir_name
+```
+1. Change SOLR_CONF_PATH environment variable in the `environment:` section.
+
 ## Caveats
 
 * This recipe won't work with versions of Solr before `solr:8`, and Acquia's hosting [requires Solr 7](https://docs.acquia.com/acquia-search/). You'll want to see the [contributed recipes](https://github.com/ddev/ddev-contrib) for older versions of Solr.
