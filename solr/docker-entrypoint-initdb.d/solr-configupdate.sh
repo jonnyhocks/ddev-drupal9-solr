@@ -6,6 +6,10 @@ set -e
 # core has been created. This does not execute the first time,
 # when solr-precreate has not yet run.
 CORENAME=${SOLR_CORENAME:-dev}
+CONF_PATH=${SOLR_CONF_PATH:-/solr-conf/conf}
 if [ -d /var/solr/data/${CORENAME}/conf ]; then
-    cp /solr-conf/conf/* /var/solr/data/${CORENAME}/conf
+    if [ -d "${CONF_PATH}" ]; then
+        # Copy the configuration files to the Solr core's configuration path
+        cp "${CONF_PATH}"/* "/var/solr/data/${CORENAME}/conf"
+    fi
 fi
